@@ -1,12 +1,12 @@
 ---
-- name: create vault user
+- name: create group
   group:
     name: {{ group_name }}
     gid: {{ gid }}
     state: present
   become: true
 
-- name: create user
+- name: create vault user
   user:
     name: {{ user_name }}
     uid: {{ user_id }}
@@ -22,7 +22,7 @@
     line: '%vault ALL=(ALL) NOPASSWD: ALL'
     validate: 'visudo -cf %s'
 
-- name: "add authorized key"
+- name: "add authorized key in vault user"
   authorized_key:
     user: {{ user_name }}
     key: "{{ lookup('file', '~/.ssh/+ id_rsa + '.pub) }}"
