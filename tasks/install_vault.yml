@@ -1,0 +1,13 @@
+---
+
+- name: "download software"
+
+- name: "unzip software"
+
+- name: "move the files to /etc/services"
+
+- name : "config files"
+
+- name:  "copy vault_service files"
+
+- name: "start services"
