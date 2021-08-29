@@ -1,0 +1,7 @@
+---
+
+group_name: "hcvault"
+gid: 1705
+user_name: "hcvault"
+host_name: hashicorp.example.com
+vault_dir_path: "/opt/vault/data"

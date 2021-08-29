@@ -1,0 +1,5 @@
+---
+- hosts: hashicorpvault
+  tasks:
+    - include: prereq.yml
+    - include: install_hashicorp.yml
