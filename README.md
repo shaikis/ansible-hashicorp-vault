@@ -18,7 +18,7 @@ ansible-playbook -i inventory/hosts  hc-vault/tasks/main.yml
 
 ```
 
-##To Check at server level:
+## To Check at server level:
 ```
 export PATH=$PATH:/opt/vault/bin
 echo "export PATH=$PATH:/opt/vault/bin" >> ~/.bashrc
@@ -28,7 +28,7 @@ echo "export VAULT_ADDR=http://10.128.0.2:8200" >> ~/.bashrc
 
 ```
 
-##Initialize Vault:
+## Initialize Vault:
 ```
 vault operator init
 ```
