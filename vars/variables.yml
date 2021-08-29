@@ -1,6 +1,5 @@
 ---
-
-vault_exe_location: "/usr/local/bin"
+vault_version: "1.8.2"
 vault_home_path: "/home/vault"
 group_name: "vault"
 group_id: "1705"
@@ -11,5 +10,5 @@ vault_bin_location: /opt/vault/bin
 vault_data_dir_path: "/opt/vault/data"
 vault_log_dir_path: "/opt/vault/log"
 config_file_location: "/etc/vault"
-software_url: "https://releases.hashicorp.com/vault/1.8.2/vault_1.8.2_linux_amd64.zip"
+software_url: "https://releases.hashicorp.com/vault/{{vault_version}}/vault_{{vault_version}}_linux_amd64.zip"
 vault_zip_file: "vault_1.8.2_linux_amd64.zip"

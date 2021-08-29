@@ -35,3 +35,12 @@
     state: started
     daemon_reload: yes
     enabled: false
+
+- name: "Initialize the vault"
+  command: 'vault operator init'
+  register: keys
+  environment:
+    VAULT_ADDR: "http://{{ host_name }}:8200"
+    PATH: "$PATH:{{ vault_bin_location }}"
+
+- debug: msg="{{ keys }}"
