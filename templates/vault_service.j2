@@ -7,12 +7,13 @@ ConditionFileNotEmpty={{ config_file_location }}/config.json
 [Service]
 User=vault
 Group=vault
-EnvironmentFile=/etc/sysconfig/vault
-Environment=GOMAXPROCS=2
+EnvironmentFile=-/etc/sysconfig/vault
+Environment=GOMAXPROCS=5
 Restart=on-failure
 ExecStart=/opt/vault/vault server -config={{ config_file_location }}/config.json
-StandardOutput=/opt/vault/logs/output.log
-StandardError=/opt/vault/logs/error.log
+StandardOutput={{ vault_log_dir_path }}/output.log
+StandardError={{ vault_log_dir_path }}/error.log
+enable_rate_limit_audit_logging=true
 LimitMEMLOCK=infinity
 ExecReload=/bin/kill -HUP $MAINPID
 KillSignal=SIGTERM

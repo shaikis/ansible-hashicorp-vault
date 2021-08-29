@@ -10,6 +10,7 @@
   unarchive:
     src: "{{ vault_home_path }}/{{ vault_zip_file }}"
     dest: "/opt/vault/bin"
+    copy: no
   become: true
 
 - name: "configure vault location"
@@ -17,19 +18,19 @@
     path: "/etc/vault"
     state: directory
 
-- name: "config.json file"
+- name: "copy template config.json file"
   template:
-    src: "config_json.j2"
+    src: "../templates/config_json.j2"
     dest: "/etc/vault/config.json"
   become: true
 
 - name: "move the files to /etc/services"
   template:
-    src: vault_service.j2
+    src: "../templates/vault_service.j2"
     dest: "/etc/systemd/system/vault.service"
 
 - name: "enable and start services"
   service:
     name: vault
     state: started
-    enabled: yes
+    enabled: false
