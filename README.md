@@ -1,4 +1,4 @@
-# hc-vault  --- In-progress
+# hc-vault
 
 ```
 HashiCorp Vault Installation using Ansible.
@@ -16,4 +16,19 @@ Run the below command to install hashicorp vault:
  
 ansible-playbook -i inventory/hosts  hc-vault/tasks/main.yml
 
+```
+
+##To Check at server level:
+```
+export PATH=$PATH:/opt/vault/bin
+echo "export PATH=$PATH:/opt/vault/bin" >> ~/.bashrc
+
+export VAULT_ADDRESS=http://10.128.0.2:8200
+echo "export VAULT_ADDR=http://10.128.0.2:8200" >> ~/.bashrc
+
+```
+
+##Initialize Vault:
+```
+vault operator init
 ```

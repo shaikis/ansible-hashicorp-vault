@@ -19,9 +19,16 @@
     user: {{ user_name }}
     key: "{{ lookup('file', '~/.ssh/+ id_rsa + '.pub) }}"
 
-- name: "create vault directory"
+- name: "create vault data directory"
   file:
-    path: "{{ vault_dir_path }}"
+    path: "{{ vault_data_dir_path }}"
     state: directory
+    owner: {{ usr_name }}
+    group: {{ group_name }}
 
-  
+- name: "create vault log directory"
+  file:
+    path: "{{ vault_log_dir_path }}"
+    state: directory
+    owner: {{ usr_name }}
+    group: {{ group_name }}

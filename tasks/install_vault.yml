@@ -1,13 +1,29 @@
 ---
 
-- name: "download software"
-
 - name: "unzip software"
+  unarchive:
+    src: {{ software_url }}
+    dest: "/opt/vault/bin"
+  remote_src: yes
+
+- name: "configure vault location"
+  file:
+    path: "/etc/vault"
+    state: directory
+
+- name: "config.json file"
+  template:
+    src: config.json.j2
+    dest: "/etc/vault/config.json"
+  become: true
 
 - name: "move the files to /etc/services"
+  template:
+    src: vault_service.j2
+    dest: "/etc/systemd/system/vault.service"
 
-- name : "config files"
-
-- name:  "copy vault_service files"
-
-- name: "start services"
+- name: "enable and start services"
+  service:
+    name: vault
+    state: started
+    enabled: yes
