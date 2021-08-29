@@ -14,6 +14,14 @@
     state: present
   become: true
 
+- name: Allow 'vault' group to have passwordless sudo
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    regexp: '^%wheel'
+    line: '%vault ALL=(ALL) NOPASSWD: ALL'
+    validate: 'visudo -cf %s'
+
 - name: "add authorized key"
   authorized_key:
     user: {{ user_name }}
