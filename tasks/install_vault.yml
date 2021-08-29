@@ -34,7 +34,7 @@
     name: vault
     state: started
     daemon_reload: yes
-    enabled: false
+    enabled: true
 
 - name: "Initialize the vault"
   shell: vault operator init >> /home/vault/init.log
