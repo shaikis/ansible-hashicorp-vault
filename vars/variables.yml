@@ -5,7 +5,7 @@ group_name: "vault"
 group_id: "1705"
 user_id: "1101"
 user_name: "vault"
-host_name: "hashicorp.example.com"
+host_name: "node02.example.com"
 vault_bin_location: /opt/vault/bin
 vault_data_dir_path: "/opt/vault/data"
 vault_log_dir_path: "/opt/vault/log"

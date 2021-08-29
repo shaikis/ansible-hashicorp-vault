@@ -37,7 +37,7 @@
     enabled: false
 
 - name: "Initialize the vault"
-  command: 'vault operator init'
+  shell: vault operator init >> /home/vault/init.log
   register: keys
   environment:
     VAULT_ADDR: "http://{{ host_name }}:8200"
