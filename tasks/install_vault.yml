@@ -29,6 +29,13 @@
     src: "../templates/vault_service.j2"
     dest: "/usr/lib/systemd/system//vault.service"
 
+- name: disable firewalld
+  service:
+    name: firewalld
+    state: stopped
+    enabled: false
+  become: true
+
 - name: "enable and start services"
   service:
     name: vault
@@ -36,11 +43,21 @@
     daemon_reload: yes
     enabled: true
 
+- debug: msg="{{ vault_status}}"
 - name: "Initialize the vault"
   shell: vault operator init >> /home/vault/init.log
   register: keys
   environment:
     VAULT_ADDR: "http://{{ host_name }}:8200"
     PATH: "$PATH:{{ vault_bin_location }}"
-
+  when: "{{vault_status}}" == true
 - debug: msg="{{ keys }}"
+
+- name: check vault status
+  command: 'vault status'
+  register: vault_status
+  environment:
+    VAULT_ADDR: "http://{{ host_name }}:8200"
+    PATH: "$PATH:{{ vault_bin_location }}" 
+
+- debug: msg="{{ vault_status}}"

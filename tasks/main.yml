@@ -3,3 +3,4 @@
   tasks:
     - include: prereq.yml
     - include: install_vault.yml
+#    - include: intigrate_with_azure_ad.yml
