@@ -1,10 +1,16 @@
 ---
+- include_vars: ../vars/variables.yml
+- name: download software zip file
+  get_url:
+    url: "{{ software_url }}"
+    dest: "{{ vault_home_path }}"
+    mode: '755'
 
 - name: "unzip software"
   unarchive:
-    src: "{{ software_url }}"
+    src: "{{ vault_home_path }}/{{ vault_zip_file }}"
     dest: "/opt/vault/bin"
-  remote_src: yes
+  become: true
 
 - name: "configure vault location"
   file:
@@ -12,8 +18,8 @@
     state: directory
 
 - name: "config.json file"
-  with_copy:
-    src: {{ lookup('template', 'templates/config_json.j2') | to_nice_json }}
+  template:
+    src: "config_json.j2"
     dest: "/etc/vault/config.json"
   become: true
 

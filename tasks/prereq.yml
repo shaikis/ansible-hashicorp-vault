@@ -1,8 +1,8 @@
 ---
-- name: create group
+- include_vars: ../vars/variables.yml
+- name: "create group"
   group:
     name: "{{ group_name }}"
-    gid: "{{ gid }}"
     state: present
   become: true
 
@@ -25,18 +25,32 @@
 - name: "add authorized key in vault user"
   authorized_key:
     user: "{{ user_name }}"
-    key: "{{ lookup('file', '~/.ssh/+ id_rsa + '.pub) }}"
+    key: '{{ item }}'
+  with_file:
+    - ../templates/vault_server_ssh_key.j2
+  
 
 - name: "create vault data directory"
   file:
     path: "{{ vault_data_dir_path }}"
     state: directory
-    owner: "{{ usr_name }}"
+    owner: "{{ user_name }}"
     group: "{{ group_name }}"
 
 - name: "create vault log directory"
   file:
     path: "{{ vault_log_dir_path }}"
     state: directory
-    owner: "{{ usr_name }}"
+    owner: "{{ user_name }}"
     group: "{{ group_name }}"
+
+- name: "create vault log directory"
+  file:
+    path: "{{ vault_bin_location }}"
+    state: directory
+  become: true
+
+- name: Install the latest version of unzip
+  yum:
+    name: unzip
+    state: latest

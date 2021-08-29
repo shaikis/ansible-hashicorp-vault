@@ -1,0 +1,14 @@
+---
+
+vault_home_path: "/home/vault"
+group_name: "vault"
+group_id: "1705"
+user_id: "1101"
+user_name: "vault"
+host_name: "hashicorp.example.com"
+vault_bin_location: /opt/vault/bin
+vault_data_dir_path: "/opt/vault/data"
+vault_log_dir_path: "/opt/vault/log"
+config_file_location: "/etc/vault"
+software_url: "https://releases.hashicorp.com/vault/1.8.2/vault_1.8.2_linux_amd64.zip"
+vault_zip_file: "vault_1.8.2_linux_amd64.zip"
