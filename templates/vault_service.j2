@@ -7,10 +7,10 @@ ConditionFileNotEmpty={{ config_file_location }}/config.json
 [Service]
 User=vault
 Group=vault
-EnvironmentFile=-/etc/sysconfig/vault
+EnvironmentFile=-/etc/vault
 Environment=GOMAXPROCS=5
 Restart=on-failure
-ExecStart=/opt/vault/vault server -config={{ config_file_location }}/config.json
+ExecStart={{ vault_bin_location }}/vault server -config={{ config_file_location }}/config.json
 StandardOutput={{ vault_log_dir_path }}/output.log
 StandardError={{ vault_log_dir_path }}/error.log
 enable_rate_limit_audit_logging=true

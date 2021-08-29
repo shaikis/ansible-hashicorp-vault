@@ -1,5 +1,6 @@
 ---
 
+vault_exe_location: "/usr/local/bin"
 vault_home_path: "/home/vault"
 group_name: "vault"
 group_id: "1705"

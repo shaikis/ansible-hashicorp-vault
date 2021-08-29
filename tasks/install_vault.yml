@@ -27,10 +27,11 @@
 - name: "move the files to /etc/services"
   template:
     src: "../templates/vault_service.j2"
-    dest: "/etc/systemd/system/vault.service"
+    dest: "/usr/lib/systemd/system//vault.service"
 
 - name: "enable and start services"
   service:
     name: vault
     state: started
+    daemon_reload: yes
     enabled: false
