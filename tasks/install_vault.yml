@@ -2,7 +2,7 @@
 
 - name: "unzip software"
   unarchive:
-    src: {{ software_url }}
+    src: "{{ software_url }}"
     dest: "/opt/vault/bin"
   remote_src: yes
 
@@ -12,8 +12,8 @@
     state: directory
 
 - name: "config.json file"
-  template:
-    src: config.json.j2
+  with_copy:
+    src: {{ lookup('template', 'templates/config_json.j2') | to_nice_json }}
     dest: "/etc/vault/config.json"
   become: true
 

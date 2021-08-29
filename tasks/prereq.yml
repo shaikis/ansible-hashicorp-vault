@@ -1,16 +1,16 @@
 ---
 - name: create group
   group:
-    name: {{ group_name }}
-    gid: {{ gid }}
+    name: "{{ group_name }}"
+    gid: "{{ gid }}"
     state: present
   become: true
 
 - name: create vault user
   user:
-    name: {{ user_name }}
-    uid: {{ user_id }}
-    group: {{ group_name }}
+    name: "{{ user_name }}"
+    uid: "{{ user_id }}"
+    group: "{{ group_name }}"
     state: present
   become: true
 
@@ -24,19 +24,19 @@
 
 - name: "add authorized key in vault user"
   authorized_key:
-    user: {{ user_name }}
+    user: "{{ user_name }}"
     key: "{{ lookup('file', '~/.ssh/+ id_rsa + '.pub) }}"
 
 - name: "create vault data directory"
   file:
     path: "{{ vault_data_dir_path }}"
     state: directory
-    owner: {{ usr_name }}
-    group: {{ group_name }}
+    owner: "{{ usr_name }}"
+    group: "{{ group_name }}"
 
 - name: "create vault log directory"
   file:
     path: "{{ vault_log_dir_path }}"
     state: directory
-    owner: {{ usr_name }}
-    group: {{ group_name }}
+    owner: "{{ usr_name }}"
+    group: "{{ group_name }}"

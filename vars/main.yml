@@ -1,8 +1,8 @@
 ---
 
-group_name: "vault"
+group_name: vault
 gid: 1705
-user_name: "vault"
+user_name: vault
 host_name: hashicorp.example.com
 vault_data_dir_path: "/opt/vault/data"
 vault_log_dir_path: "/opt/vault/log"
